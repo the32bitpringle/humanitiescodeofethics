@@ -90,24 +90,22 @@ app.post('/api/edit', async (req, res) => {
     try {
         const article = await db.get('SELECT currentContent FROM article LIMIT 1');
         
-        const prompt = `You are a strict gatekeeper for a document titled 'Humanity's Code of Ethics'. Your only job is to determine if a proposed change is a serious, relevant, and coherent attempt to modify the ethical code.
+        const prompt = `Task: Analyze the 'Proposed Text' and determine if it is a contextual and coherent continuation of the 'Original Text'.
 
-Do NOT judge the ethical merit or value of the proposal. Only filter out nonsense.
+Rules:
+1. REJECT if the 'Proposed Text' contains nonsense, gibberish, or random characters (e.g., "ls;dkhflakdjfha").
+2. REJECT if the 'Proposed Text' is clearly off-topic from the 'Original Text' (e.g., talking about food, cars, or sports when the original is about ethics).
+3. APPROVE if the 'Proposed Text' is a coherent, on-topic attempt to modify the 'Original Text'. Your only job is to filter for context, not correctness or morality.
 
-Current Code of Ethics:
+Original Text (a code of ethics):
 ${article.currentContent}
 
-Proposed New Code of Ethics:
+Proposed Text:
 ${newContent}
 
-CRITERIA FOR REJECTION:
-- The change introduces irrelevant topics (e.g., "add sausages to the code").
-- The change is obvious nonsense or gibberish (e.g., "ls;dkhflakdjfha").
-- The change is a joke or not a serious attempt to engage with the text.
+Is the 'Proposed Text' a valid, on-topic, and coherent modification based *only* on the rules above?
 
-Based on these strict criteria, is the proposed change a valid, on-topic modification?
-
-Respond ONLY with a JSON object: { "success": boolean, "message": "A brief explanation of why the change was approved or rejected based on relevance and coherence." }`;
+Respond ONLY with a JSON object: { "success": boolean, "message": "Reason for approval or rejection based on context and coherence." }`;
 
         const chatCompletion = await groq.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
