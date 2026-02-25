@@ -90,17 +90,24 @@ app.post('/api/edit', async (req, res) => {
     try {
         const article = await db.get('SELECT currentContent FROM article LIMIT 1');
         
-        const prompt = `Review this proposed change to 'Humanity's Code of Ethics'.
-Current Code:
+        const prompt = `You are a strict gatekeeper for a document titled 'Humanity's Code of Ethics'. Your only job is to determine if a proposed change is a serious, relevant, and coherent attempt to modify the ethical code.
+
+Do NOT judge the ethical merit or value of the proposal. Only filter out nonsense.
+
+Current Code of Ethics:
 ${article.currentContent}
 
-Proposed New Code:
+Proposed New Code of Ethics:
 ${newContent}
 
-Reason for change: ${changeDescription}
+CRITERIA FOR REJECTION:
+- The change introduces irrelevant topics (e.g., "add sausages to the code").
+- The change is obvious nonsense or gibberish (e.g., "ls;dkhflakdjfha").
+- The change is a joke or not a serious attempt to engage with the text.
 
-Determine if this change is ethical, constructive, and aligned with the goal of improving humanity's well-being.
-Respond ONLY with a JSON object: { "success": boolean, "message": "Short explanation" }`;
+Based on these strict criteria, is the proposed change a valid, on-topic modification?
+
+Respond ONLY with a JSON object: { "success": boolean, "message": "A brief explanation of why the change was approved or rejected based on relevance and coherence." }`;
 
         const chatCompletion = await groq.chat.completions.create({
             messages: [{ role: 'user', content: prompt }],
