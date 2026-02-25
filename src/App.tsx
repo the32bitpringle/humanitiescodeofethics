@@ -177,7 +177,7 @@ const ArticleView = () => {
               value={editValue} 
               onChange={(e) => setEditValue(e.target.value)}
             />
-            <div style={{marginTop: '1rem'}}>
+            <div className="modal-actions">
               <button onClick={handleSubmit}>Submit for AI Review</button>
               <button className="secondary" onClick={() => setEditing(false)}>Cancel</button>
             </div>
