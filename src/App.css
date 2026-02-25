@@ -1,0 +1,227 @@
+:root {
+  --bg-color: #f5f5dc; /* Beige */
+  --text-color: #3b3b3b;
+  --accent-color: #8b4513;
+  --secondary-bg: #e8e4c9;
+  --border-color: #dcdcdc;
+  --modal-bg: rgba(245, 245, 220, 0.95);
+  --button-bg: #3b3b3b;
+  --button-text: #f5f5dc;
+}
+
+[data-theme='dark'] {
+  --bg-color: #1a1a1a;
+  --text-color: #f0ead6;
+  --accent-color: #d2b48c;
+  --secondary-bg: #2a2a2a;
+  --border-color: #444;
+  --modal-bg: rgba(26, 26, 26, 0.95);
+  --button-bg: #f0ead6;
+  --button-text: #1a1a1a;
+}
+
+[data-theme='forest'] {
+  --bg-color: #1b2e1b;
+  --text-color: #e0f2e0;
+  --accent-color: #90ee90;
+  --secondary-bg: #264026;
+  --border-color: #3a5c3a;
+  --modal-bg: rgba(27, 46, 27, 0.95);
+  --button-bg: #e0f2e0;
+  --button-text: #1b2e1b;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", "Times New Roman", Times, serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.container {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 40px;
+}
+
+h1 {
+  font-weight: normal;
+  font-style: italic;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  color: var(--accent-color);
+}
+
+.article-content {
+  font-size: 1.2rem;
+  white-space: pre-wrap;
+}
+
+.word {
+  cursor: pointer;
+  padding: 2px 0;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.word:hover {
+  background-color: var(--secondary-bg);
+  text-decoration: underline;
+  color: var(--accent-color);
+}
+
+.edit-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--modal-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.edit-modal {
+  background: var(--bg-color);
+  padding: 2rem;
+  border: 1px solid var(--text-color);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  font-family: "Georgia", serif;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+}
+
+button {
+  background: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-family: "Georgia", serif;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: opacity 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+}
+
+button:disabled {
+  background: var(--border-color);
+  cursor: not-allowed;
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+nav {
+  margin-bottom: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+}
+
+nav a {
+  color: var(--text-color);
+  opacity: 0.7;
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+nav a.active {
+  color: var(--accent-color);
+  opacity: 1;
+  font-weight: bold;
+}
+
+.history-item {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.history-meta {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+
+.history-content {
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-color);
+}
+
+.reversed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.veto-status {
+  font-size: 0.8rem;
+  color: #d9534f;
+}
+
+.status-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  border-radius: 4px;
+}
+
+/* Theme Switcher */
+.theme-switcher {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--text-color);
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.theme-btn.active {
+  transform: scale(1.2);
+  border-width: 2px;
+}
