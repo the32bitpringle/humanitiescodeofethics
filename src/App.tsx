@@ -247,8 +247,7 @@ const HistoryView = () => {
             {!entry.reversed && entry.id !== 1 && (
               <div className="veto-actions">
                 <button 
-                  className="secondary" 
-                  style={{fontSize: '0.8rem', padding: '5px 10px'}}
+                  className="secondary veto-button" 
                   onClick={() => handleVeto(entry.id)}
                   disabled={entry.vetoes.includes(userId)}
                 >
