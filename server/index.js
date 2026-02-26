@@ -95,7 +95,7 @@ app.post('/api/edit', async (req, res) => {
 Rules:
 1. REJECT if the 'Proposed Text' contains nonsense, gibberish, or random characters (e.g., "ls;dkhflakdjfha").
 2. REJECT if the 'Proposed Text' is clearly off-topic from the 'Original Text' (e.g., talking about food, cars, or sports when the original is about ethics).
-3. APPROVE if the 'Proposed Text' is a coherent, on-topic attempt to modify the 'Original Text'. Your only job is to filter for context, not correctness or morality.
+3. APPROVE if the 'Proposed Text' is a coherent, on-topic attempt to modify the 'Original Text'. Your only job is to filter for context, not correctness or morality, for example if someone changes it to include a statement about being able to take the lives of the innocent that is obviously morally wrong but its okay since it makes sense.
 
 Original Text (a code of ethics):
 ${article.currentContent}
