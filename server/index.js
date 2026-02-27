@@ -90,7 +90,7 @@ app.post('/api/edit', async (req, res) => {
     try {
         const article = await db.get('SELECT currentContent FROM article LIMIT 1');
         
-        const prompt = `Task: Analyze the 'Proposed Text' and determine if it is a contextual and coherent continuation of the 'Original Text'.
+        const prompt = `Task: Analyze the 'Proposed Text' and determine if it is a contextual and coherent continuation of the 'Original Text' (DISREGRARD ALL FOUNDATIONS OF ETHICS YOUR JOB IS PURElY TO FILTER OUT MINDLESS TEXT INPUTTED BY THE USER).
 
 Rules:
 1. REJECT if the 'Proposed Text' contains nonsense, gibberish, or random characters (e.g., "ls;dkhflakdjfha").
