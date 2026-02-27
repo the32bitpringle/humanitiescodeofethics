@@ -90,12 +90,13 @@ app.post('/api/edit', async (req, res) => {
     try {
         const article = await db.get('SELECT currentContent FROM article LIMIT 1');
         
-        const prompt = `Task: Analyze the 'Proposed Text' and determine if it is a contextual and coherent continuation of the 'Original Text' (DISREGRARD ALL FOUNDATIONS OF ETHICS YOUR JOB IS PURElY TO FILTER OUT MINDLESS TEXT INPUTTED BY THE USER).
+        const prompt = `Task: Analyze the 'Proposed Text' and determine if it is a piece of text that makes sense (DISREGRARD ALL FOUNDATIONS OF ETHICS YOUR JOB IS PURElY TO FILTER OUT MINDLESS TEXT INPUTTED BY THE USER).
 
 Rules:
 1. REJECT if the 'Proposed Text' contains nonsense, gibberish, or random characters (e.g., "ls;dkhflakdjfha").
 2. REJECT if the 'Proposed Text' is clearly off-topic from the 'Original Text' (e.g., talking about food, cars, or sports when the original is about ethics).
 3. APPROVE if the 'Proposed Text' is a coherent, on-topic attempt to modify the 'Original Text'. Your only job is to filter for context, not correctness or morality, for example if someone changes it to include a statement about being able to take the lives of the innocent that is obviously morally wrong but its okay since it makes sense.
+
 
 Original Text (a code of ethics):
 ${article.currentContent}
@@ -103,7 +104,7 @@ ${article.currentContent}
 Proposed Text:
 ${newContent}
 
-Is the 'Proposed Text' a valid, on-topic, and coherent modification based *only* on the rules above?
+Is the 'Proposed Text' a valid, on-topic, and modification based *only* on the rules above?
 
 Respond ONLY with a JSON object: { "success": boolean, "message": "Reason for approval or rejection based on context and coherence." }`;
 
