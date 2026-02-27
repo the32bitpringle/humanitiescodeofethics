@@ -28,17 +28,11 @@ This project is optimized for deployment as a **Web Service** on Render.
 ### 2. Environment Variables
 Add the following in the Render dashboard:
 - `GROQ_API_KEY`: Your Groq API Key.
+- `DATABASE_URL`: Your PostgreSQL connection string (Supabase/Neon).
 - `NODE_ENV`: `production`
-- `DATABASE_PATH`: (Optional) `/var/data/database.sqlite` if using a persistent disk.
-
-### 3. Persistent Disk (Recommended)
-If you want to keep the history after the service restarts:
-1. Go to **Disks** in your Render service settings.
-2. Add a disk with **Mount Path** set to `/var/data`.
-3. Ensure `DATABASE_PATH` environment variable is set to `/var/data/database.sqlite`.
 
 ## Architecture
 - **Frontend**: React (TypeScript)
 - **Backend**: Express.js
-- **Database**: SQLite
+- **Database**: PostgreSQL (Cloud)
 - **AI**: Groq (Llama 3.3)
