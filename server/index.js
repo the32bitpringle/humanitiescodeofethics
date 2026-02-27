@@ -96,7 +96,7 @@ Rules:
 1. REJECT if the 'Proposed Text' contains nonsense, gibberish, or random characters (e.g., "ls;dkhflakdjfha").
 2. REJECT if the 'Proposed Text' is clearly off-topic from the 'Original Text' (e.g., talking about food, cars, or sports when the original is about ethics).
 3. APPROVE if the 'Proposed Text' is a coherent, on-topic attempt to modify the 'Original Text'. Your only job is to filter for context, not correctness or morality, for example if someone changes it to include a statement about being able to take the lives of the innocent that is obviously morally wrong but its okay since it makes sense.
-
+4. Meaningless means gibberish like 'adfkjhsa3432' it does not mean something like 'be able to do anything' since that is meaningful in someway, meaningless also means something random and off topic like 'sausages are yummy'
 
 Original Text (a code of ethics):
 ${article.currentContent}
