@@ -12,6 +12,7 @@ const groq = new Groq({
 });
 
 // PostgreSQL Connection Pool
+console.log('Connecting to:', process.env.DATABASE_URL ? process.env.DATABASE_URL.replace(/:[^:@]+@/, ':****@') : 'UNDEFINED');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
