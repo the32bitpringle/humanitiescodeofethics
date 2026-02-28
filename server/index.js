@@ -12,7 +12,11 @@ const groq = new Groq({
 });
 
 // PostgreSQL Connection Pool
-console.log('Connecting to:', process.env.DATABASE_URL ? process.env.DATABASE_URL.replace(/:[^:@]+@/, ':****@') : 'UNDEFINED');
+if (!process.env.DATABASE_URL) {
+    console.error('FATAL: DATABASE_URL is not defined in environment variables!');
+    process.exit(1);
+}
+console.log('Connecting to database...');
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL,
     ssl: {
