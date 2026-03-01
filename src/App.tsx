@@ -280,7 +280,7 @@ const IntroModal = ({ onClose }: { onClose: () => void }) => {
           </div>
           <div style={{ marginBottom: '1rem' }}>
             <strong>2. AI Review</strong>
-            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Your proposal will be reviewed by an AI for consistency and ethical alignment.</div>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Your proposal will be reviewed by an AI to moderate meaningless or destructive text.</div>
           </div>
           <div style={{ marginBottom: '1rem' }}>
             <strong>3. Human Veto</strong>
