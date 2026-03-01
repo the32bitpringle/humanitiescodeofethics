@@ -267,10 +267,54 @@ const HistoryView = () => {
   );
 };
 
+const IntroModal = ({ onClose }: { onClose: () => void }) => {
+  return (
+    <div className="edit-overlay">
+      <div className="edit-modal" style={{ maxWidth: '600px' }}>
+        <h2 style={{ fontStyle: 'italic', color: 'var(--accent-color)' }}>Welcome to Humanity's Code of Ethics</h2>
+        <p>This document is a living record of our collective values. You have the power to shape it.</p>
+        <div style={{ textAlign: 'left', margin: '1.5rem 0' }}>
+          <div style={{ marginBottom: '1rem' }}>
+            <strong>1. Propose Edits</strong>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Click any word in the text to propose a change to the article.</div>
+          </div>
+          <div style={{ marginBottom: '1rem' }}>
+            <strong>2. AI Review</strong>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>Your proposal will be reviewed by an AI for consistency and ethical alignment.</div>
+          </div>
+          <div style={{ marginBottom: '1rem' }}>
+            <strong>3. Human Veto</strong>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8 }}>All changes are recorded in History. If you disagree with a change, cast a veto. Two human vetos will reverse any AI-approved change.</div>
+          </div>
+        </div>
+        <p style={{ fontStyle: 'italic', fontSize: '0.9rem', marginBottom: '1.5rem' }}>
+          Your voice matters in defining our shared future.
+        </p>
+        <button onClick={onClose}>I Understand</button>
+      </div>
+    </div>
+  );
+};
+
 function App() {
+  const [showIntro, setShowIntro] = useState(false);
+
+  useEffect(() => {
+    const hasSeenIntro = localStorage.getItem('has_seen_intro');
+    if (!hasSeenIntro) {
+      setShowIntro(true);
+    }
+  }, []);
+
+  const closeIntro = () => {
+    localStorage.setItem('has_seen_intro', 'true');
+    setShowIntro(false);
+  };
+
   return (
     <ThemeProvider>
       <Router>
+        {showIntro && <IntroModal onClose={closeIntro} />}
         <Routes>
           <Route path="/" element={<ArticleView />} />
           <Route path="/history" element={<HistoryView />} />
